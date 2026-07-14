@@ -1,0 +1,52 @@
+.settings-container{
+    margin-top:30px;
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.settings-card{
+    background:#fff;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.settings-card h2{
+    margin-bottom:20px;
+}
+
+.settings-card input,
+.settings-card select{
+    width:100%;
+    padding:12px;
+    margin-bottom:15px;
+    border:1px solid #d1d5db;
+    border-radius:8px;
+}
+
+.settings-card label{
+    display:block;
+    margin-bottom:15px;
+}
+
+.settings-card input[type="checkbox"]{
+    width:auto;
+    margin-right:10px;
+}
+
+.save-settings-btn{
+    width:220px;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#2563eb;
+    color:#fff;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.save-settings-btn:hover{
+    background:#1d4ed8;
+}

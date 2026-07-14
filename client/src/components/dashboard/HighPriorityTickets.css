@@ -1,0 +1,49 @@
+.priority-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
+
+.priority-card h2 {
+    margin-bottom: 20px;
+}
+
+.priority-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.priority-item:last-child {
+    border-bottom: none;
+}
+
+.priority-item h4 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.priority-item p {
+    margin-top: 5px;
+    color: gray;
+    font-size: 13px;
+}
+
+.priority-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.priority-badge.high {
+    background: #ff9b19;
+}
+
+.priority-badge.critical {
+    background: #dc2626;
+}

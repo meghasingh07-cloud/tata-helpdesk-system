@@ -1,0 +1,51 @@
+.activity-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,.08);
+}
+
+.activity-card h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
+
+.activity-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.activity-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-top: 6px;
+}
+
+.create {
+    background: #2563eb;
+}
+
+.resolved {
+    background: #16a34a;
+}
+
+.assign {
+    background: #f59e0b;
+}
+
+.update {
+    background: #9333ea;
+}
+
+.activity-details p {
+    margin: 0;
+    font-size: 15px;
+}
+
+.activity-details span {
+    color: #64748b;
+    font-size: 13px;
+}

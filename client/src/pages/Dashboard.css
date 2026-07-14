@@ -1,0 +1,53 @@
+.dashboard-content{
+    padding:35px;
+    background:#f8fafc;
+    min-height:calc(100vh - 80px);
+    display:block;
+}
+.dashboard-main{
+    margin-left:230px;
+    width:calc(100% - 230px);
+    min-height:100vh;
+}
+.cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:25px;
+}
+.charts{
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+    margin-top:30px;
+
+}
+.dashboard-bottom {
+    margin-top: 30px;
+}
+.dashboard-bottom{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:25px;
+    margin-top:30px;
+}
+
+@media(max-width:1000px){
+    .dashboard-bottom{
+        grid-template-columns:1fr;
+    }
+}
+
+.dashboard-agents{
+    margin-top:30px;
+}
+@media (max-width:1200px){
+    .cards{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+@media (max-width:700px){
+    .cards{
+        grid-template-columns:1fr;
+    }
+}
