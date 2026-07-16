@@ -6,6 +6,12 @@ import Agents from "./pages/Agents";
 import Reports from "./pages/Reports";
 import Settings from "./pages/Settings";
 import Profile from "./pages/Profile";
+import Login from "./user-frontend/Login/Login";
+import Register from "./user-frontend/Register/Register";
+import RaiseTicket from "./user-frontend/RaiseTicket/RaiseTicket";
+import MyTickets from "./user-frontend/MyTickets/MyTickets";
+import Notification from "./user-frontend/Notification/Notification";
+import UserProfile from "./user-frontend/Profile/Profile";
 
 function App() {
   return (
@@ -20,6 +26,12 @@ function App() {
         <Route path="/reports" element={<Reports />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/raise-ticket" element={<RaiseTicket />} />
+        <Route path="/my-tickets" element={<MyTickets />} />
+        <Route path="/notifications" element={<Notification />} />
+        <Route path="/user-profile" element={<UserProfile />} />    
       </Routes>
     </BrowserRouter>
   );
