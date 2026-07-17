@@ -27,6 +27,23 @@ const ticket = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+   reopened: {
+    type: Boolean,
+    default: false,
+  },
+  resolvedAt: {
+    type: Date,
+    default: null,
+  },
+   closedAt: {
+    type: Date,
+    default: null,
+  },
+  resolvedBy: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    default: null,
+  },
   createdBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
