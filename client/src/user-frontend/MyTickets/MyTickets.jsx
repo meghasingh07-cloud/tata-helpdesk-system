@@ -1,120 +1,109 @@
-import React, { useState } from "react";
+import UserLayout from "../components/UserLayout";
 import "./MyTickets.css";
+import { useState } from "react";
 
 function MyTickets() {
-  const [selectedTicket, setSelectedTicket] = useState(null);
   const [search, setSearch] = useState("");
-  const [statusFilter, setStatusFilter] = useState("");
 
   const tickets = [
     {
-      id: 101,
-      title: "Login Issue",
-      category: "Technical",
-      priority: "High",
+      id: "#101",
+      subject: "Printer Issue",
       status: "Open",
-      description: "Unable to login to my account."
+      priority: "High",
+      date: "18 Jul 2026",
     },
     {
-      id: 102,
-      title: "Printer Not Working",
-      category: "Hardware",
-      priority: "Medium",
+      id: "#102",
+      subject: "Email Login",
       status: "Pending",
-      description: "Office printer is not printing."
+      priority: "Medium",
+      date: "17 Jul 2026",
     },
     {
-      id: 103,
-      title: "Software Installation",
-      category: "Software",
-      priority: "Low",
+      id: "#103",
+      subject: "Network Error",
       status: "Closed",
-      description: "Need Microsoft Office installed."
-    }
+      priority: "Low",
+      date: "15 Jul 2026",
+    },
   ];
 
-  const filteredTickets = tickets.filter((ticket) => {
-    return (
-      ticket.title.toLowerCase().includes(search.toLowerCase()) &&
-      (statusFilter === "" || ticket.status === statusFilter)
-    );
-  });
+  const filteredTickets = tickets.filter((ticket) =>
+    ticket.subject.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
-    <div className="mytickets-container">
+    <UserLayout>
+      <div className="tickets-page">
 
-      <h2>My Tickets</h2>
+        <div className="tickets-header">
+          <h1>My Tickets</h1>
 
-      <input
-        type="text"
-        placeholder="Search by Title"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
-
-      <select
-        value={statusFilter}
-        onChange={(e) => setStatusFilter(e.target.value)}
-      >
-        <option value="">All Status</option>
-        <option value="Open">Open</option>
-        <option value="Pending">Pending</option>
-        <option value="Closed">Closed</option>
-      </select>
-
-      <table border="1" cellPadding="10">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Category</th>
-            <th>Priority</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {filteredTickets.map((ticket) => (
-            <tr key={ticket.id}>
-              <td>{ticket.id}</td>
-              <td>{ticket.title}</td>
-              <td>{ticket.category}</td>
-              <td>{ticket.priority}</td>
-              <td>{ticket.status}</td>
-
-              <td>
-                <button onClick={() => setSelectedTicket(ticket)}>
-                  View
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-
-      {selectedTicket && (
-        <div className="popup">
-          <div className="popup-content">
-
-            <h2>Ticket Details</h2>
-
-            <p><strong>ID:</strong> {selectedTicket.id}</p>
-            <p><strong>Title:</strong> {selectedTicket.title}</p>
-            <p><strong>Category:</strong> {selectedTicket.category}</p>
-            <p><strong>Priority:</strong> {selectedTicket.priority}</p>
-            <p><strong>Status:</strong> {selectedTicket.status}</p>
-            <p><strong>Description:</strong> {selectedTicket.description}</p>
-
-            <button onClick={() => setSelectedTicket(null)}>
-              Close
-            </button>
-
-          </div>
+          <input
+            type="text"
+            placeholder="Search ticket..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
         </div>
-      )}
 
-    </div>
+        <div className="tickets-card">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Subject</th>
+                <th>Status</th>
+                <th>Priority</th>
+                <th>Date</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              {filteredTickets.map((ticket) => (
+                <tr key={ticket.id}>
+                  <td>{ticket.id}</td>
+
+                  <td>{ticket.subject}</td>
+
+                  <td>
+                    <span
+                      className={`status ${ticket.status.toLowerCase()}`}
+                    >
+                      {ticket.status}
+                    </span>
+                  </td>
+
+                  <td>
+                    <span
+                      className={`priority ${ticket.priority.toLowerCase()}`}
+                    >
+                      {ticket.priority}
+                    </span>
+                  </td>
+
+                  <td>{ticket.date}</td>
+
+                  <td>
+                    <button className="view-btn">
+                      View
+                    </button>
+                  </td>
+                </tr>
+              ))}
+
+            </tbody>
+
+          </table>
+
+        </div>
+      </div>
+    </UserLayout>
   );
 }
 

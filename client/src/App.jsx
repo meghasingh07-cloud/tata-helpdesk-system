@@ -11,7 +11,8 @@ import Register from "./user-frontend/Register/Register";
 import RaiseTicket from "./user-frontend/RaiseTicket/RaiseTicket";
 import MyTickets from "./user-frontend/MyTickets/MyTickets";
 import Notification from "./user-frontend/Notification/Notification";
-import UserProfile from "./user-frontend/Profile/Profile";
+import UserDashboard from "./user-frontend/Dashboard/UserDashboard";
+import UserProfile from "./user-frontend/UserProfile/UserProfile";
 
 function App() {
   return (
@@ -31,7 +32,8 @@ function App() {
         <Route path="/raise-ticket" element={<RaiseTicket />} />
         <Route path="/my-tickets" element={<MyTickets />} />
         <Route path="/notifications" element={<Notification />} />
-        <Route path="/user-profile" element={<UserProfile />} />    
+        <Route path="/user-profile" element={<UserProfile />} />  
+        <Route path="/user-dashboard" element={<UserDashboard />} /> 
       </Routes>
     </BrowserRouter>
   );

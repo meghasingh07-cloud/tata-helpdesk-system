@@ -44,16 +44,16 @@ button:hover {
   background-color: #005fa3;
 }
 
-p {
+.auth-text {
   text-align: center;
   margin-top: 15px;
 }
 
-p a {
+.auth-text a {
   color: #0078d4;
   text-decoration: none;
 }
 
-p a:hover {
+.auth-text a:hover {
   text-decoration: underline;
 }

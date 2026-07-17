@@ -1,38 +1,63 @@
-import React from "react";
+import UserLayout from "../components/UserLayout";
 import "./Notification.css";
 
-function Notifications() {
+function Notification() {
+
   const notifications = [
     {
       id: 1,
-      message: "Your ticket #101 has been assigned to a support agent.",
-      time: "2 hours ago",
+      title: "Ticket #101 has been assigned.",
+      time: "5 mins ago",
     },
     {
       id: 2,
-      message: "Your ticket #102 has been resolved.",
-      time: "Yesterday",
+      title: "Your ticket #099 has been resolved.",
+      time: "1 hour ago",
     },
     {
       id: 3,
-      message: "Your ticket #103 is currently pending.",
-      time: "3 days ago",
+      title: "Support team replied to Ticket #097.",
+      time: "Yesterday",
+    },
+    {
+      id: 4,
+      title: "Password changed successfully.",
+      time: "2 days ago",
     },
   ];
 
   return (
-    <div className="notifications-container">
-      <h2>Notifications</h2>
+    <UserLayout>
 
-      {notifications.map((notification) => (
-        <div key={notification.id}>
-          <p>{notification.message}</p>
-          <small>{notification.time}</small>
-          <hr />
+      <div className="notification-page">
+
+        <h1>Notifications</h1>
+
+        <div className="notification-list">
+
+          {notifications.map((item) => (
+
+            <div className="notification-card" key={item.id}>
+
+              <div className="notification-icon">
+                🔔
+              </div>
+
+              <div className="notification-content">
+                <h3>{item.title}</h3>
+                <p>{item.time}</p>
+              </div>
+
+            </div>
+
+          ))}
+
         </div>
-      ))}
-    </div>
+
+      </div>
+
+    </UserLayout>
   );
 }
 
-export default Notifications;
+export default Notification;

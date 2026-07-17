@@ -1,0 +1,14 @@
+.user-layout {
+  display: flex;
+  background: #f4f7fc;
+  min-height: 100vh;
+}
+
+.user-main {
+  flex: 1;
+  margin-left: 250px;
+}
+
+.user-content {
+  padding: 30px;
+}

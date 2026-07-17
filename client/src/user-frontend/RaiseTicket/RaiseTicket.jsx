@@ -1,87 +1,109 @@
-import React, { useState } from "react";
+import UserLayout from "../components/UserLayout";
 import "./RaiseTicket.css";
+import { useState } from "react";
 
 function RaiseTicket() {
-  const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("");
-  const [priority, setPriority] = useState("");
-  const [description, setDescription] = useState("");
+  const [ticket, setTicket] = useState({
+    subject: "",
+    category: "",
+    priority: "",
+    description: "",
+  });
+
+  const handleChange = (e) => {
+    setTicket({
+      ...ticket,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!title || !category || !priority || !description) {
-      alert("Please fill all the fields.");
-      return;
-    }
+    alert("Ticket Submitted Successfully!");
 
-    console.log("Title:", title);
-    console.log("Category:", category);
-    console.log("Priority:", priority);
-    console.log("Description:", description);
-
-    alert("Ticket Raised Successfully!");
+    console.log(ticket);
   };
 
   return (
-    <div className="raise-ticket-container">
-      <h2>Raise a Ticket</h2>
+    <UserLayout>
+      <div className="raise-ticket">
 
-      <form onSubmit={handleSubmit}>
+        <h1>Raise a Support Ticket</h1>
 
-        <div>
-          <label>Ticket Title:</label>
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-        </div>
+        <form className="ticket-form" onSubmit={handleSubmit}>
 
-        <div>
-          <label>Category:</label>
-          <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            required
-          >
-            <option value="">Select Category</option>
-            <option value="Technical">Technical</option>
-            <option value="Hardware">Hardware</option>
-            <option value="Software">Software</option>
-            <option value="Network">Network</option>
-          </select>
-        </div>
+          <div className="form-group">
+            <label>Subject</label>
 
-        <div>
-          <label>Priority:</label>
-          <select
-            value={priority}
-            onChange={(e) => setPriority(e.target.value)}
-            required
-          >
-            <option value="">Select Priority</option>
-            <option value="Low">Low</option>
-            <option value="Medium">Medium</option>
-            <option value="High">High</option>
-          </select>
-        </div>
+            <input
+              type="text"
+              name="subject"
+              placeholder="Enter ticket subject"
+              value={ticket.subject}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <div>
-          <label>Description:</label>
-          <textarea
-            rows="5"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          ></textarea>
-        </div>
+          <div className="form-row">
 
-        <button type="submit">Submit Ticket</button>
+            <div className="form-group">
+              <label>Category</label>
 
-      </form>
-    </div>
+              <select
+                name="category"
+                value={ticket.category}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select Category</option>
+                <option>Hardware</option>
+                <option>Software</option>
+                <option>Network</option>
+                <option>Account</option>
+              </select>
+            </div>
+
+            <div className="form-group">
+              <label>Priority</label>
+
+              <select
+                name="priority"
+                value={ticket.priority}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select Priority</option>
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+              </select>
+            </div>
+
+          </div>
+
+          <div className="form-group">
+            <label>Description</label>
+
+            <textarea
+              rows="6"
+              name="description"
+              placeholder="Describe your issue..."
+              value={ticket.description}
+              onChange={handleChange}
+              required
+            />
+          </div>
+
+          <button className="submit-btn">
+            Submit Ticket
+          </button>
+
+        </form>
+
+      </div>
+    </UserLayout>
   );
 }
 
