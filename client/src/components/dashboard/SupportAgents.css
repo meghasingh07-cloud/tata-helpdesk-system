@@ -1,0 +1,78 @@
+.agents-container{
+    background:white;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.agents-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+.agents-header button{
+    background:#2563eb;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.agents-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.agent-card{
+    text-align:center;
+    padding:25px;
+    border:1px solid #e2e8f0;
+    border-radius:15px;
+    transition:.3s;
+}
+
+.agent-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 10px 20px rgba(0,0,0,.08);
+}
+
+.agent-avatar{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    background:#2563eb;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:28px;
+    margin:auto;
+    margin-bottom:15px;
+}
+
+.agent-status{
+    display:inline-block;
+    padding:6px 12px;
+    border-radius:20px;
+    margin:12px 0;
+    font-size:13px;
+}
+
+.online{
+    background:#dcfce7;
+    color:#15803d;
+}
+
+.busy{
+    background:#fef3c7;
+    color:#ca8a04;
+}
+
+.offline{
+    background:#fee2e2;
+    color:#dc2626;
+}

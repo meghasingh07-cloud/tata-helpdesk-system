@@ -1,0 +1,87 @@
+.user-navbar {
+  height: 75px;
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.nav-left h2 {
+  margin: 0;
+  color: #1e293b;
+}
+
+.nav-left p {
+  margin: 3px 0 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.search-box{
+    width:300px;
+    padding:12px 18px;
+    border-radius:30px;
+    border:1px solid #ddd;
+    outline:none;
+    transition:.3s;
+}
+
+.search-box:focus{
+    border-color:#2563eb;
+}
+
+.notification {
+  position: relative;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.notification-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  font-size: 11px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.profile h4 {
+  margin: 0;
+}
+
+.profile span {
+  color: gray;
+  font-size: 13px;
+}
