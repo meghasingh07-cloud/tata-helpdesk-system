@@ -9,8 +9,8 @@ const createTicket = async (req, res, next) => {
     }
 
     const ticket = await Ticket.create({
-      title,
-      description,
+      title: title.trim(),
+      description: description.trim(),
       createdBy: req.user._id
     });
     res.status(201).json(ticket);
@@ -49,6 +49,9 @@ const getAllTickets = async (req, res, next) => {
 const assignTicket = async (req, res, next) => {
   try {
     const { supportId } = req.body;
+    if (!supportId) {
+  return res.status(400).json({ message: 'supportId is required' });
+}
     const ticket = await Ticket.findById(req.params.id);
     if (!ticket) return res.status(404).json({ message: 'Ticket not found' });
     ticket.assignedTo = supportId;
@@ -62,6 +65,7 @@ const assignTicket = async (req, res, next) => {
 
 const solveTicket = async (req, res, next) => {
   try {
+    const { solution } = req.body;
     if (!solution || !solution.trim()) {
       return res.status(400).json({ message: 'Solution is required' });
     }
@@ -78,6 +82,66 @@ const solveTicket = async (req, res, next) => {
     next(err);
   }
 };
+
+const getTicketById = async (req, res, next) => {
+  try {
+    const ticket = await Ticket.findById(req.params.id)
+      .populate('createdBy', 'name email phone')
+      .populate('resolvedBy', 'name');
+
+    if (!ticket) {
+      return res.status(404).json({ message: 'Ticket not found' });
+    }
+
+    res.json(ticket);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const updateTicket = async (req, res, next) => {
+  try {
+    const { title, description } = req.body;
+
+    const ticket = await Ticket.findById(req.params.id);
+
+    if (!ticket) {
+      return res.status(404).json({ message: 'Ticket not found' });
+    }
+
+     if (!title || !title.trim() || !description || !description.trim()) {
+  return res.status(400).json({
+    message: 'Title and description are required'
+  });
+}
+
+    ticket.title = title.trim();
+    ticket.description = description.trim();
+
+    await ticket.save();
+
+    res.json(ticket);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const deleteTicket = async (req, res, next) => {
+  try {
+    const ticket = await Ticket.findById(req.params.id);
+
+    if (!ticket) {
+      return res.status(404).json({ message: 'Ticket not found' });
+    }
+
+    await ticket.deleteOne();
+
+    res.json({ message: 'Ticket deleted successfully' });
+  } catch (err) {
+    next(err);
+  }
+};
+
 
 const confirmTicket = async (req, res, next) => {
   try {
@@ -97,13 +161,14 @@ const confirmTicket = async (req, res, next) => {
       return res.status(400).json({ message: 'Only a resolved ticket can be confirmed' });
     }
 
-    if (confirmed) {
-      ticket.status = 'closed';
-      ticket.closedAt = new Date();
-    } else {
+   if (confirmed) {
+  ticket.status = 'closed';
+  ticket.closedAt = new Date();
+  ticket.reopened = false;
+} else {
       ticket.status = 'in-progress';
       ticket.assignedTo = ticket.resolvedBy;
-      ticket.reopenedAt = new Date();
+      ticket.reopened = true;
       ticket.reopenCount += 1;
     }
 
@@ -118,6 +183,9 @@ module.exports = {
   createTicket,
   getMyTickets,
   getAllTickets,
+  getTicketById,
+  updateTicket,
+  deleteTicket,
   assignTicket,
   solveTicket,
   confirmTicket
