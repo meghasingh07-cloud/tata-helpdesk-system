@@ -2,7 +2,6 @@ const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const generateToken = require("../utils/generateToken");
 
-// Register
 const register = async (req, res, next) => {
   try {
     const { name, phone, email, password, role } = req.body;
@@ -32,7 +31,7 @@ const register = async (req, res, next) => {
   }
 };
 
-// Login
+
 const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
