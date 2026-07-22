@@ -1,12 +1,8 @@
-// dashboardController.js
-// This file contains the actual LOGIC for dashboard stats.
-// Each function here will be connected to a URL in dashboardRoutes.js later.
-
 const Ticket = require("../models/Ticket");
 const User = require("../models/User");
 
-// GET /api/dashboard/status-summary
-// Returns how many tickets exist in each status (open, in-progress, resolved, closed)
+
+// no of tickets in each status 
 const getStatusSummary = async (req, res, next) => {
   try {
     const summary = await Ticket.aggregate([
@@ -26,12 +22,10 @@ const getStatusSummary = async (req, res, next) => {
 
     res.json(formatted);
   } catch (err) {
-    next(err); // hand off any error to the error-handling middleware
+    next(err);
   }
 };
 
-// GET /api/dashboard/overview
-// Returns a few simple top-level numbers for the dashboard
 const getOverview = async (req, res, next) => {
   try {
     const totalTickets = await Ticket.countDocuments();
@@ -47,9 +41,7 @@ const getOverview = async (req, res, next) => {
     next(err);
   }
 };
-
-// GET /api/dashboard/priority-summary
-// Returns how many tickets exist per priority (low, medium, high)
+// no of tickets per priority
 const getPrioritySummary = async (req, res, next) => {
   try {
     const summary = await Ticket.aggregate([
