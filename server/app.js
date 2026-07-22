@@ -22,5 +22,10 @@ app.get("/", (req, res) => {
 
 // Any URL starting with /api/dashboard gets handled by dashboardRoutes.js
 app.use("/api/dashboard", dashboardRoutes);
+const errorHandler = require("./middleware/errorMiddleware");
+// ... (keep everything else the same, just add this line near your other requires)
+
+// at the very end, after app.use("/api/dashboard", dashboardRoutes);
+app.use(errorHandler);
 
 module.exports = app;
