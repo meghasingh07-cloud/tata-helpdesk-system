@@ -13,11 +13,6 @@ const getStatusSummary = async (req, res, next) => {
       { $group: { _id: "$status", count: { $sum: 1 } } },
     ]);
 
-    // summary currently looks like:
-    // [ { _id: 'open', count: 5 }, { _id: 'resolved', count: 2 }, ... ]
-    // Let's reshape it into something easier for the frontend to use directly:
-    // { open: 5, resolved: 2, 'in-progress': 0, closed: 0 }
-
     const formatted = {
       open: 0,
       "in-progress": 0,
@@ -32,32 +27,6 @@ const getStatusSummary = async (req, res, next) => {
     res.json(formatted);
   } catch (err) {
     next(err); // hand off any error to the error-handling middleware
-  }
-};
-const Ticket = require("../models/Ticket");
-const User = require("../models/User");
-
-// GET /api/dashboard/status-summary
-const getStatusSummary = async (req, res, next) => {
-  try {
-    const summary = await Ticket.aggregate([
-      { $group: { _id: "$status", count: { $sum: 1 } } },
-    ]);
-
-    const formatted = {
-      open: 0,
-      "in-progress": 0,
-      resolved: 0,
-      closed: 0,
-    };
-
-    summary.forEach((item) => {
-      formatted[item._id] = item.count;
-    });
-
-    res.json(formatted);
-  } catch (err) {
-    next(err);
   }
 };
 
@@ -102,7 +71,6 @@ const getPrioritySummary = async (req, res, next) => {
     next(err);
   }
 };
-
 
 module.exports = {
   getStatusSummary,
